@@ -1,5 +1,4 @@
-all:
-	build
+all: build
 
 watch: output/
 	npm start
