@@ -17,7 +17,7 @@ main =
   where
     env =
       Env
-        { envUser = Just user_nobody
+        { envUser = Just user_testy
         }
 
 -- Data fixtures {{{
@@ -45,8 +45,16 @@ user_nobody = User
 
 product_nothing :: Product
 product_nothing = Product
-  { name = "Test product"
+  { name = "Nothing"
   , quantity = 1000
+  , price = Just 999
+  , availability = ["Brazil", "Poland"]
+  }
+
+product_test :: Product
+product_test = Product
+  { name = "Test product"
+  , quantity = 2
   , price = Just 999
   , availability = ["Brazil", "Poland"]
   }
@@ -55,6 +63,12 @@ purchase1 :: Purchase
 purchase1 = Purchase
   { orderedProduct = product_nothing
   , orderedQuantity = 55
+  }
+
+purchase2 :: Purchase
+purchase2 = Purchase
+  { orderedProduct = product_test
+  , orderedQuantity = 10
   }
 
 -- }}}
