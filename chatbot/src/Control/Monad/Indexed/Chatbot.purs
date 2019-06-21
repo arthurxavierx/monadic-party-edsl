@@ -15,12 +15,11 @@ import Control.Monad.Rec.Class (class MonadRec, Step(..), tailRecM)
 import Data.Either (Either(..))
 import Data.Newtype (class Newtype)
 import Data.Tuple (Tuple(..))
-import Effect (Effect)
 import Effect.Aff (Aff, bracket)
 import Effect.Aff.Console (Interface, closeInterface, createInterface, prompt)
 import Effect.Class (liftEffect)
 import Effect.Class.Console (log)
-import Text.Parsing.Parser (Parser, parseErrorMessage, runParser)
+import Text.Parsing.Parser (parseErrorMessage, runParser)
 
 newtype ConsoleChatbot x y a = ConsoleChatbot (ReaderT Interface Aff a)
 
@@ -59,7 +58,7 @@ instance ixBindConsoleChatbot :: IxBind ConsoleChatbot where
 instance ixMonadConsoleChatbot :: IxMonad ConsoleChatbot
 
 instance ixMonadChatbotConsoleChatbot :: IxMonadChatbot ConsoleChatbot where
-  start :: forall a. Parser String a -> ConsoleChatbot Start Answer a
+  -- start :: forall a. Parser String a -> ConsoleChatbot Start Answer a
   start parser = ConsoleChatbot do
     Tuple _ r <- unit # tailRecM \_ -> do
       -- Prompts for a message and loops until it can be parsed.
@@ -72,7 +71,7 @@ instance ixMonadChatbotConsoleChatbot :: IxMonadChatbot ConsoleChatbot where
           pure $ Done (Tuple msg r)
     pure r
 
-  ask :: forall a. String -> Parser String a -> ConsoleChatbot Ask Answer a
+  -- ask :: forall a. String -> Parser String a -> ConsoleChatbot Ask Answer a
   ask q parser = ConsoleChatbot do
     Tuple _ r <- unit # tailRecM \_ -> do
       -- Ask the question
@@ -87,11 +86,11 @@ instance ixMonadChatbotConsoleChatbot :: IxMonadChatbot ConsoleChatbot where
           pure $ Done (Tuple msg r)
     pure r
 
-  answer :: String -> ConsoleChatbot Answer Ask Unit
+  -- answer :: String -> ConsoleChatbot Answer Ask Unit
   answer msg = ConsoleChatbot $ liftEffect $ log msg
 
-  finalize :: ConsoleChatbot Ask Finalized Unit
+  -- finalize :: ConsoleChatbot Ask Finalized Unit
   finalize = ConsoleChatbot (pure unit)
 
-  effect :: forall i a. Effect a -> ConsoleChatbot i Answer a
+  -- effect :: forall i a. Effect a -> ConsoleChatbot i Answer a
   effect = ConsoleChatbot <<< liftEffect

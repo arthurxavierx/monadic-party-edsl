@@ -40,12 +40,12 @@ class IxMonad m <= IxMonadChatbot m where
   -- | specified parser. The record produced by the parser is added to the
   -- | knowledge record of the chatbot.
   start :: forall r. Parser String {| r } -> m Start (Answer r) Unit
+  -- | Answers the user with a message.
+  answer :: forall s. String -> m (Answer s) (Ask s) Unit
   -- | Asks the user a question and awaits for an answer that can be parsed by
   -- | the specified parser, producing a record that is added to the knowledge
   -- | repository of the chatbot.
   ask :: forall r s t u. Union r s t => Nub t u => String -> Parser String {| r } -> m (Ask s) (Answer u) Unit
-  -- | Answers the user with a message.
-  answer :: forall s. String -> m (Answer s) (Ask s) Unit
   -- | Finalizes a chatbot, disabling its communication capabilities. After
   -- | this, an `IxMonadChatbot` essentially stops.
   finalize :: forall s. m (Ask s) Finalized Unit
