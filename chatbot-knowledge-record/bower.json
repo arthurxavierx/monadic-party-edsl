@@ -1,0 +1,23 @@
+{
+  "name": "chatbot",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "output"
+  ],
+  "dependencies": {
+    "purescript-aff": "^5.1.1",
+    "purescript-console": "^4.2.0",
+    "purescript-effect": "^2.0.1",
+    "purescript-indexed-monad": "^1.0.0",
+    "purescript-parsing": "^5.0.3",
+    "purescript-prelude": "^4.1.1",
+    "purescript-record": "^2.0.1",
+    "purescript-tailrec": "^4.0.0",
+    "purescript-tuples": "^5.1.0"
+  },
+  "devDependencies": {
+    "purescript-psci-support": "^4.0.0"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "chatbot",
+  "version": "1.0.0",
+  "license": "MIT",
+  "devDependencies": {
+    "bower": "^1.8.8",
+    "pulp": "^13.0.0",
+    "purescript": "^0.13.0"
+  }
+}
