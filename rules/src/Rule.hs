@@ -1,6 +1,5 @@
 {-# LANGUAGE GADTs #-}
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
-{-# LANGUAGE RankNTypes #-}
 {-# LANGUAGE ScopedTypeVariables #-}
 
 module Rule
@@ -22,7 +21,7 @@ import Data.Semigroup (Semigroup)
 -- out of any given `f`.  This is basically a *Prism*.
 type Match f a = f -> Maybe a
 
--- Rules are simply a list of individual, independent rules.
+-- | Rules are simply a list of individual, independent rules.
 newtype Rules event env m = Rules [Rule event env m]
   deriving (Semigroup, Monoid)
 
